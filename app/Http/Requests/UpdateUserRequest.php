@@ -13,7 +13,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email,'.$this->user->id],
+            'password' => ['confirmed', 'min:8'],
         ];
     }
 }
