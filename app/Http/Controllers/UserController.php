@@ -26,12 +26,6 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'Usuario creado exitosamente 👍🏻');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         //
