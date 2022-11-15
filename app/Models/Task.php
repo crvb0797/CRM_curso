@@ -20,6 +20,8 @@ class Task extends Model
         'client_id',
         'project_id'
     ];
+    
+    public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'completado'];
 
     public function user()
     {

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Listado de Proyectos</h1>
+                    <h1 class="m-0">Listado de Tareas</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
     <div class="content">
         <div class="container-fluid">
 
-            {{-- Alerta de creación de usuario --}}
+            {{-- Alerta de creación de tarea --}}
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -28,37 +28,39 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <a href="{{ route('admin.projects.create') }}" class="btn btn-primary mb-3">Nuevo Proyecto <i
+                            <a href="{{ route('admin.tasks.create') }}" class="btn btn-primary mb-3">Nueva tarea <i
                                     class="fa-solid fa-plus"></i></a>
 
-                            <table class="table table-bordered table-hover table-striped" id="project_table">
+                            <table class="table table-bordered table-hover table-striped" id="task_table">
                                 <thead>
                                     <tr>
-                                        <th>Proyecto</th>
-                                        <th>escripción</th>
+                                        <th>Tarea</th>
+                                        <th>Descripcion</th>
                                         <th>Fecha Limite</th>
-                                        <th>Estado</th>
+                                        <th>Status</th>
+                                        <th>Proyecto</th>
                                         <th>Usuario</th>
                                         <th>Cliente</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($projects as $project)
+                                    @foreach ($tasks as $task)
                                         <tr>
-                                            <td>{{ $project->name }}</td>
-                                            <td>{{ $project->description }}</td>
-                                            <td>{{ $project->deadline }}</td>
-                                            <td>{{ $project->status}}</td>
-                                            <td>{{ $project->user->name}}</td>
-                                            <td>{{ $project->client->contact_name}}</td>
+                                            <td>{{ $task->name }}</td>
+                                            <td>{{ $task->description }}</td>
+                                            <td>{{ $task->deadline }}</td>
+                                            <td>{{ $task->task_status }}</td>
+                                            <td>{{ $task->project->name }}</td>
+                                            <td>{{ $task->user->name }}</td>
+                                            <td>{{ $task->client->contact_name }}</td>
                                             <td>
-                                                {{-- Editar usuario --}}
-                                                <a href="{{ route('admin.projects.edit', $project->id) }}"
-                                                    class="btn btn-primary">Editar <i class="fa-solid fa-user-pen"></i></a>
-                                                    
-                                                {{-- Eliminar usuario --}}
-                                                <form action="{{ route('admin.projects.destroy', $project->id) }}"
+                                                <a href="{{ route('admin.tasks.edit', $task->id) }}"
+                                                    class="btn btn-success">
+                                                    Editar
+                                                </a>
+
+                                                <form action="{{ route('admin.tasks.destroy', $task->id) }}"
                                                     id="delete_form" method="POST"
                                                     onsubmit="return confirm('Esta seguro que desea eliminar el registro?')"
                                                     style="display: inline-block;">
@@ -82,7 +84,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('#project_table').DataTable({
+            $('#task_table').DataTable({
                 language: {
                     processing: "Cargando...",
                     search: "Buscar&nbsp;:",

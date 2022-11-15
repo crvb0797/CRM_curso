@@ -7,7 +7,7 @@
       <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('admin.home')}}" class="nav-link">
                       <i class="nav-icon fas fa-tachometer-alt"></i>
                       <p>
                           Dashboard
@@ -39,7 +39,7 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('admin.tasks.index')}}" class="nav-link">
                       <i class="nav-icon fas fa-clipboard-list"></i>
                       <p>
                           Tareas
