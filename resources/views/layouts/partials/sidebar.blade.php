@@ -46,16 +46,16 @@
                       </p>
                   </a>
               </li>
-              <li class="nav-item">
-                  <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                      <p>
-                          <i class="fas fa-fw fa-sign-out-alt nav-icon">
 
-                          </i>
-                          <p>Cerrar sesión</p>
-                      </p>
-                  </a>
-              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                    <i class="nav-icon fas fa-sign-out"></i>
+                    <p>
+                        Cerrar sesión
+                    </p>
+                </a>
+            </li>
+             
           </ul>
       </nav>
   </div>

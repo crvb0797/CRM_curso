@@ -74,14 +74,29 @@
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
     {{-- SELECT 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             /* FATLPICKR */
             flatpickr(".date", {
                 "locale": "es",
                 "minDate": "today",
+                dateFormat: "d/m/Y",
             });
+
+            /* DATATABLE */
+            $.extend(true, $.fn.dataTable.defaults, {
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+                },
+                columnDefs: [{
+                        targets: -1,
+                        searching: false,
+                        orderable: false,
+                    },
+                ]
+            });
+
             /* SELECT2 */
             $('.select2').select2();
         })

@@ -76,29 +76,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('#user_table').DataTable({
-                language: {
-                    processing: "Cargando...",
-                    search: "Buscar&nbsp;:",
-                    lengthMenu: "Mostrar _MENU_ elementos",
-                    info: "Mostrando _START_ a _END_ en _TOTAL_ elementos",
-                    infoEmpty: "Mostrando elemento 0 a 0 de 0 elementos",
-                    infoFiltered: "(filtrado por _MAX_ elementos en total)",
-                    loadingRecords: "Cargando...",
-                    zeroRecords: "No hay elementos para mostrar",
-                    emptyTable: "No hay datos disponibles en la tabla",
-                    paginate: {
-                        first: "Primero",
-                        previous: "Anterior",
-                        next: "Siguiente",
-                        last: "Ultimo"
-                    },
-                    aria: {
-                        sortAscending: ":  permite ordenar la columna en orden ascendente",
-                        sortDescending: ": habilitar para ordenar la columna en orden descendente"
-                    }
-                }
-            });
+            $('#user_table').DataTable();
         });
     </script>
 @endsection
