@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Editar Cliente</h1>
+                    <h1 class="m-0">Editar Proyecto</h1>
                 </div>
             </div>
         </div>
@@ -17,84 +17,89 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="POST" action="{{ route('admin.clients.update', $client->id) }}">
+                            <form method="POST" action="{{ route('admin.projects.update', $project->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="contact_name" class="required">Nombre del cliente </label>
-                                    <input type="text" name="contact_name" id="contact_name"
-                                        class="form-control {{ $errors->has('contact_name') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese el nombre del cliente"
-                                        value="{{ old('contact_name', $client->contact_name) }}">
-                                    @if ($errors->has('contact_name'))
+                                    <label for="name" class="required">Proyecto</label>
+                                    <input type="text" name="name" id="name"
+                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                        placeholder="Ingrese el nombre del proyecto"
+                                        value="{{ old('name', $project->name) }}">
+                                    @if ($errors->has('name'))
                                         <span class="text-danger">
-                                            <strong>{{ $errors->first('contact_name') }}</strong>
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="contact_email" class="required">Email del cliente </label>
-                                    <input type="email" name="contact_email" id="contact_email"
-                                        class="form-control {{ $errors->has('contact_email') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese el email del cliente"
-                                        value="{{ old('contact_email', $client->contact_email) }}">
-                                    @if ($errors->has('contact_email'))
+                                    <label for="description" class="required">Descripción</label>
+                                    <textarea name="description" class="form-control">{{ old('description', $project->description) }}</textarea>
+                                    @if ($errors->has('description'))
                                         <span class="text-danger">
-                                            <strong>{{ $errors->first('contact_email') }}</strong>
+                                            <strong>{{ $errors->first('description') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="contact_phone_number" class="required">Teléfono del cliente</label>
-                                    <input type="text" name="contact_phone_number" id="contact_phone_number"
-                                        class="form-control {{ $errors->has('contact_phone_number') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese el teléfono del cliente"
-                                        value="{{ old('contact_phone_number', $client->contact_phone_number) }}">
-                                    @if ($errors->has('contact_phone_number'))
+                                    <label for="deadline" class="required">Fecha Límite</label>
+                                    <input name="deadline" type="text" class="form-control date"
+                                        value="{{ old('deadline', $project->deadline) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_id" class="required">Usuario</label>
+                                    <select class="form-control select2" name="user_id" style="width: 100%;">
+                                        <option value="">Seleccione un usuario</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}"
+                                                {{ (old('user_id') ? old('user_id') : $project->user->id ?? '') == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('user_id'))
                                         <span class="text-danger">
-                                            <strong>{{ $errors->first('contact_phone_number') }}</strong>
+                                            <strong>{{ $errors->first('user_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="company_name" class="required">Nombre de la empresa</label>
-                                    <input type="text" name="company_name" id="company_name"
-                                        class="form-control {{ $errors->has('company_name') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese el nombre de la empresa"
-                                        value="{{ old('company_name', $client->company_name) }}">
-                                    @if ($errors->has('company_name'))
+                                    <label for="client_id" class="required">Cliente</label>
+                                    <select class="form-control select2" name="client_id" style="width: 100%;">
+                                        <option value="">Seleccione un cliente</option>
+                                        @foreach ($clients as $client)
+                                            <option value="{{ $client->id }}"
+                                                {{ (old('client_id') ? old('client_id') : $project->client->id ?? '') == $client->id ? 'selected' : '' }}>
+                                                {{ $client->contact_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('client_id'))
                                         <span class="text-danger">
-                                            <strong>{{ $errors->first('company_name') }}</strong>
+                                            <strong>{{ $errors->first('client_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="company_address" class="required">Dirección de la empresa</label>
-                                    <input type="text" name="company_address" id="company_address"
-                                        class="form-control {{ $errors->has('company_address') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese la dirección de la empresa"
-                                        value="{{ old('company_address', $client->company_address) }}">
-                                    @if ($errors->has('company_address'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('company_address') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label for="company_phone_number" class="required">Teléfono de la empresa</label>
-                                    <input type="text" name="company_phone_number" id="company_phone_number"
-                                        class="form-control {{ $errors->has('company_phone_number') ? 'is-invalid' : '' }}"
-                                        placeholder="Ingrese el teléfono de la empresa"
-                                        value="{{ old('company_phone_number', $client->company_phone_number) }}">
-                                    @if ($errors->has('company_phone_number'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('company_phone_number') }}</strong>
-                                        </span>
+                                    <label for="status">Status del proyecto</label>
+                                    <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}"
+                                        name="status" id="status" required>
+                                        <option value="">Seleccione un status</option>
+                                        @foreach (App\Models\Project::STATUS as $status)
+                                            <option value="{{ $status }}"
+                                                {{ (old('status') ? old('status') : $project->status ?? '') == $status ? 'selected' : '' }}>
+                                                {{ $status }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('status'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('status') }}
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <a class="btn btn-danger" href="{{ route('admin.clients.index') }}">
+                                        <a class="btn btn-danger" href="{{ route('admin.projects.index') }}">
                                             <i class="fa fa-fw fa-lg fa-arrow-left"></i>
                                             Regresar
                                         </a>

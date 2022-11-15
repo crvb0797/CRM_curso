@@ -27,6 +27,8 @@
         href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.12.1/datatables.min.css" />
     {{-- FLAT PICKR --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    {{-- SELECT 2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -70,14 +72,21 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+    {{-- SELECT 2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
+            /* FATLPICKR */
             flatpickr(".date", {
                 "locale": "es",
                 "minDate": "today",
             });
+            /* SELECT2 */
+            $('.select2').select2();
         })
     </script>
+
 
     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
